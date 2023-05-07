@@ -36,7 +36,7 @@
     "quick-lru": "^1.0.0",
     "request": "*",
     "request-promise-native": "^1.0.5",
-    "sharp": "^0.22.1",
+    "sharp": "^0.32.1",
     "sqlite": "^2.8.0",
     "sqlite3": "*",
     "uuid": "^3.4.0"

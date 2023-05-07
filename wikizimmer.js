@@ -550,7 +550,7 @@ class WikiItem {
 // }
 class ArticleStub extends WikiItem {
     constructor ( pageInfo ) {
-        super( 'A', urlconv.resolve( wiki.articleUriPrefix, pageInfo.fullurl ), pageInfo.title )
+        super( '.', urlconv.resolve( wiki.articleUriPrefix, pageInfo.fullurl ), pageInfo.title ) // 'A'
         this.info = pageInfo
         this.mwId = pageInfo.pageid
         this.revision = pageInfo.lastrevid
@@ -612,6 +612,15 @@ class Article extends ArticleStub {
             dom( wiki.removeSelector ).each( (i, elem) => {
                 dom( elem ).remove()
             })
+
+            // Add "All pages" link in sidebar
+            try {
+              dom( '#t-specialpages' ).replaceWith(
+                cheerio.load('<li class="mw-list-item" id="t-allpages"><a href="Toutes_les_pages" title="Toutes les pages [q]" accesskey="q" rel="alternate">Toutes les pages</a></li>')('li')
+              )
+            } catch ( err ) {
+              log( 'allpages', err )
+            }
 
             // modify links
             let css = dom( '#layout-css' )
